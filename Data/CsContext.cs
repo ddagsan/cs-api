@@ -7,7 +7,7 @@ using System.Reflection;
 using Core.Utilities;
 using System.Data.Common;
 using System.Data;
-using Data.Domain;
+using Core.Domain;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Data
@@ -509,6 +509,16 @@ namespace Data
                 }
             };
             modelBuilder.Entity<Product>().HasData(products.ToArray());
+
+            var users = new List<User>()
+            {
+                new User()
+                {
+                    Id = generator.GetId<User>(),
+                    Username = "CsUser"
+                }
+            };
+            modelBuilder.Entity<User>().HasData(users.ToArray());
         }
 
         /// <summary>

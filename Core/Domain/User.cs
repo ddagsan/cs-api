@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.Domain
+namespace Core.Domain
 {
     public class User : BaseEntity
     {

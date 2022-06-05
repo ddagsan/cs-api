@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{15538EE3-2B8E-49A1-B76D-1CCC3BF9D4B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{B803AA66-8308-4D58-BC2A-4AA5DBCEC704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{B803AA66-8308-4D58-BC2A-4AA5DBCEC704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Framework", "Web.Framework\Web.Framework.csproj", "{D287EC73-793A-439F-BD1D-A3304AF1746E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Framework", "Web.Framework\Web.Framework.csproj", "{D287EC73-793A-439F-BD1D-A3304AF1746E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{04B6AFBA-313F-4E4C-B9A5-60C5CE5FB428}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D287EC73-793A-439F-BD1D-A3304AF1746E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D287EC73-793A-439F-BD1D-A3304AF1746E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D287EC73-793A-439F-BD1D-A3304AF1746E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04B6AFBA-313F-4E4C-B9A5-60C5CE5FB428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04B6AFBA-313F-4E4C-B9A5-60C5CE5FB428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04B6AFBA-313F-4E4C-B9A5-60C5CE5FB428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04B6AFBA-313F-4E4C-B9A5-60C5CE5FB428}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿using Data.Domain;
+﻿using Core.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
