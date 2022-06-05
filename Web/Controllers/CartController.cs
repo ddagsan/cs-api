@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Services.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Infrastructure;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {
@@ -13,16 +15,35 @@ namespace Web.Controllers
     public class CartController : CustomControllerBase
     {
         private readonly ILogger<CartController> _logger;
+        private readonly IUserService _userService;
 
-        public CartController(ILogger<CartController> logger)
+        public CartController(
+            ILogger<CartController> logger,
+            IUserService userService
+            )
         {
             _logger = logger;
+            _userService = userService;
         }
 
         [HttpGet]
-        public int CountOfItemsInCart()
+        public IEnumerable<CartListViewModel> GetItemsInCart()
         {
-            return 1;
+            var cartItems = _userService.GetItemsInCart(UserId).Select(m => new CartListViewModel() //TODO: automapper
+            {
+                CartId = m.Id,
+                Image = "", //TODO: image yolu eklenecek
+                ProductName = m.Product.Name,
+                ProductId = m.ProductId
+            });
+
+            return cartItems;
+        }
+
+        [HttpGet("/count")]
+        public int GetCountOfItemsInCart()
+        {
+            return _userService.GetCountOfItemsInCart(UserId);
         }
 
         [HttpPost()]
@@ -32,9 +53,9 @@ namespace Web.Controllers
         }
 
         [HttpDelete()]
-        public int Delete([FromBody] int productId)
+        public void Delete([FromBody] int productId)
         {
-            return 1;
+            _userService.DeleteItemInCart(UserId, productId);
         }
     }
 }
