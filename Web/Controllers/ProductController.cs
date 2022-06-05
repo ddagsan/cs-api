@@ -1,12 +1,12 @@
-﻿using Core.RequestModels;
-using Core.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Infrastructure;
+using Web.RequestModels;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {

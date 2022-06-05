@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.RequestModels.Enums
+namespace Web.RequestModels.Enums
 {
     public enum SortType : int
     {

@@ -1,9 +1,9 @@
-﻿using Core.RequestModels.Enums;
+﻿using Web.RequestModels.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.RequestModels
+namespace Web.RequestModels
 {
     public class PaginationParameter
     {

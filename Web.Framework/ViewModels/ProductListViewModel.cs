@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.ViewModels
+namespace Web.ViewModels
 {
     public class ProductListViewModel
     {
