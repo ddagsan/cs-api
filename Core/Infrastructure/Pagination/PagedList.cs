@@ -13,6 +13,10 @@ namespace Core.Infrastructure.Pagination
     [Serializable]
     public class PagedList<T> : List<T>, IPagedList<T>
     {
+        public PagedList()
+        {
+
+        }
         /// <summary>
         /// Ctor
         /// </summary>

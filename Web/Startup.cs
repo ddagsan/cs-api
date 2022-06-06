@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Web.Infrastructure;
 
 namespace Web
 {
@@ -37,18 +38,8 @@ namespace Web
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             IConfiguration configuration = configurationBuilder.Build();
 
-            services.AddDbContext<CsContext>(optionsBuilder =>
-            {
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-            });
+            DependencyRegistrar.Register(services, configuration);
 
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-
-            services.AddScoped<IDbContext, CsContext>();
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IUserService, UserService>();
-
-            services.AddControllers();
             services.AddSwaggerGen();
         }
 

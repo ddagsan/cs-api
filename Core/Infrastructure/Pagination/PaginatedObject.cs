@@ -7,6 +7,10 @@ namespace Core.Infrastructure.Pagination
     public class PaginatedObject<T> where T : class
     {
         public PagedList<T> List { get; set; }
+        public PaginatedObject()
+        {
+
+        }
         public PaginatedObject(PagedList<T> list)
         {
             List = list;
