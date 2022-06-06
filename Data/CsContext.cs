@@ -9,6 +9,7 @@ using System.Data.Common;
 using System.Data;
 using Core.Domain;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Data
 {
@@ -18,7 +19,8 @@ namespace Data
 
         public CsContext(DbContextOptions<CsContext> options) : base(options)
         {
-            //this.Database.Migrate();
+            if (!(this.Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
+                this.Database.Migrate();
         }
 
         #endregion

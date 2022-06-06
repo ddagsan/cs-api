@@ -47,13 +47,13 @@ namespace Web.Controllers
         }
 
         [HttpPost()]
-        public int Post([FromBody] int productId)
+        public void Post([FromBody] int productId)
         {
-            return 1;
+            _userService.AddItemToCart(UserId, productId);
         }
 
         [HttpDelete()]
-        public void Delete([FromBody] int productId)
+        public void Delete([FromQuery] int productId)
         {
             _userService.DeleteItemInCart(UserId, productId);
         }

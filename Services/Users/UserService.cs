@@ -11,13 +11,28 @@ namespace Services.Users
     {
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Cart> _cartRepository;
+        private readonly IRepository<Product> _productRepository;
         public UserService(
                 IRepository<User> userRepository,
-                IRepository<Cart> cartRepository
+                IRepository<Cart> cartRepository,
+                IRepository<Product> productRepository
             )
         {
             _userRepository = userRepository;
             _cartRepository = cartRepository;
+            _productRepository = productRepository;
+        }
+
+        public void AddItemToCart(int userId, int productId)
+        {
+            //var product = _productRepository.Table.First(m => m.Id == productId);
+            var cartItem = new Cart() 
+            { 
+                UserId = userId,
+                ProductId = productId,
+                DateCreated = DateTime.Now
+            };
+            _cartRepository.Insert(cartItem);
         }
 
         public void DeleteItemInCart(int userId, int productId)
