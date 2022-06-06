@@ -7,6 +7,6 @@ namespace Web.RequestModels
     public class PaginationParameter
     {
         public int Index { get; set; }
-        public int? Take { get; set; }
+        public int Size { get; set; }
     }
 }

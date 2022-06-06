@@ -1,6 +1,7 @@
 ﻿using Core.Data;
 using Core.Domain;
 using Core.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace Services.Products
             _productRepository = productRepository;
         }
 
-        public IQueryable<Product> Get(string name, int? colorId, int? brandId, SortType sortType, int take = 12, int index = 0)
+        public IQueryable<Product> Get(string name, int? colorId, int? brandId, SortType sortType)
         {
-            var query = _productRepository.Table;
+            IQueryable<Product> query = _productRepository.Table.Include(m => m.Brand).Include(m => m.Color);
 
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(m => m.Name == name); //HACK: case insensitive kontrolü için kontrol edilmeli
@@ -46,7 +47,7 @@ namespace Services.Products
                     break;
             }
 
-            return query.Skip(index * take).Take(take);
+            return query;//.Skip(index * take).Take(take);
         }
     }
 }

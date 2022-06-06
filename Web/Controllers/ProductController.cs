@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Core.Domain;
+using Core.Infrastructure.Pagination;
+using Core.Pagination.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Products;
 using System;
@@ -28,11 +31,13 @@ namespace Web.Controllers
         }
 
         [HttpGet()]
-        public IEnumerable<ProductListViewModel> Get([FromQuery] SearchParameter search, [FromQuery] PaginationParameter pagination)
+        public ProductSearchViewModel Get([FromQuery] SearchParameter search, [FromQuery] PaginationParameter pagination)
         {
-            var prods = _productService.Get(search.Name, search.ColorId, search.BrandId, search.SortType, pagination.Take ?? int.MaxValue, pagination.Index);
+            var retVal = new ProductSearchViewModel();
 
-            return prods.Select(m => new ProductListViewModel()//TODO: automapper
+            var prods = _productService.Get(search.Name, search.ColorId, search.BrandId, search.SortType);
+            var prodsListed = prods.ToList();
+            var list = prods.Select(m => new ProductListViewModel()//TODO: automapper
             {
                 Brand = m.Brand.Name,
                 Color = m.Color.Name,
@@ -42,6 +47,12 @@ namespace Web.Controllers
                 Price = m.Price,
                 IsInCart = m.Carts.Any(c => c.UserId == UserId)
             });
+            var pagedList = new PagedList<ProductListViewModel>(list, pagination.Index, pagination.Size);
+            retVal.Products = new PaginatedObject<ProductListViewModel>(pagedList);
+            retVal.Brands = prodsListed.GroupBy(m => m.Brand, m => m.BrandId, (Key, G) => new SearchableItem() { Id = Key.Id, Name = Key.Name, Type = "Brand", CountOf = G.Count() });
+            retVal.Colors = prodsListed.GroupBy(m => m.Color, m => m.ColorId, (Key, G) => new SearchableItem() { Id = Key.Id, Name = Key.Name, Type = "Color", CountOf = G.Count() });
+
+            return retVal;
         }
     }
 }
